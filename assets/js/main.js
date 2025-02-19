@@ -201,4 +201,70 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  /**
+   * Handle contact form submission
+   */
+  const contactForm = document.querySelector('.php-email-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      let thisForm = this;
+      let action = thisForm.getAttribute('action');
+      let submitButton = thisForm.querySelector('button[type="submit"]');
+      let loadingMessage = thisForm.querySelector('.loading');
+      let errorMessage = thisForm.querySelector('.error-message');
+      let sentMessage = thisForm.querySelector('.sent-message');
+
+      // Show loading message
+      if (loadingMessage) {
+        loadingMessage.classList.add('d-block');
+      }
+      if (errorMessage) {
+        errorMessage.classList.remove('d-block');
+      }
+      if (sentMessage) {
+        sentMessage.classList.remove('d-block');
+      }
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+
+      let formData = new FormData(thisForm);
+
+      fetch(action, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (loadingMessage) {
+          loadingMessage.classList.remove('d-block');
+        }
+        if (data.status === 'success') {
+          if (sentMessage) {
+            sentMessage.classList.add('d-block');
+          }
+          thisForm.reset();
+        } else {
+          throw new Error(data.message || 'Form submission failed');
+        }
+      })
+      .catch(error => {
+        if (loadingMessage) {
+          loadingMessage.classList.remove('d-block');
+        }
+        if (errorMessage) {
+          errorMessage.textContent = error.message;
+          errorMessage.classList.add('d-block');
+        }
+      })
+      .finally(() => {
+        if (submitButton) {
+          submitButton.disabled = false;
+        }
+      });
+    });
+  }
+
 })();

@@ -6,55 +6,169 @@
 * License: https://bootstrapmade.com/license/
 */
 
+/* Font Declarations */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../Fonts/Body Text/Montserrat-Regular.ttf') format('truetype'),
+         url('../Fonts/Body Text/Montserrat-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../Fonts/Body Text/Montserrat-Bold.ttf') format('truetype'),
+         url('../Fonts/Body Text/Montserrat-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../Fonts/Body Text/Montserrat-Light.ttf') format('truetype'),
+         url('../Fonts/Body Text/Montserrat-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../Fonts/Body Text/Montserrat-Medium.ttf') format('truetype'),
+         url('../Fonts/Body Text/Montserrat-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../Fonts/Body Text/Montserrat-SemiBold.ttf') format('truetype'),
+         url('../Fonts/Body Text/Montserrat-SemiBold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mustard';
+    src: url('../Fonts/headlines/Mustard Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mustard';
+    src: url('../Fonts/headlines/Mustard Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
 /*--------------------------------------------------------------
 # Font & Color Variables
 # Help: https://bootstrapmade.com/color-system/
 --------------------------------------------------------------*/
-/* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
-}
+  /* Fonts */
+  --default-font: 'Montserrat', system-ui, -apple-system, "Segoe UI", sans-serif;
+  --heading-font: 'Mustard', sans-serif;
+  --nav-font: 'Montserrat', sans-serif;
 
-/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #2a2c39; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #28a745; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
-}
-
-/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
-:root {
-  --nav-color: #ffffff;  /* The default color of the main navmenu links */
-  --nav-hover-color: #28a745; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #060606; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #28a745; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
-}
-
-/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
-
-.light-background {
-  --background-color: #f9f9f9;
+  /* Global Colors */
+  --background-color: #ffffff;
+  --default-color: #444444;
+  --heading-color: #2a2c39;
+  --accent-color: #28a745;
   --surface-color: #ffffff;
+  --contrast-color: #ffffff;
+
+  /* Nav Menu Colors */
+  --nav-color: #ffffff;
+  --nav-hover-color: #28a745;
+  --nav-mobile-background-color: #ffffff;
+  --nav-dropdown-background-color: #ffffff;
+  --nav-dropdown-color: #060606;
+  --nav-dropdown-hover-color: #28a745;
+
+  /* Smooth scroll */
+  scroll-behavior: smooth;
+}
+
+/* Color Presets */
+.light-background {
+    --background-color: #f9f9f9;
+    --surface-color: #ffffff;
 }
 
 .dark-background {
-  --background-color: #2a2c39;
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --surface-color: #404356;
-  --contrast-color: #ffffff;
+    --background-color: #2a2c39;
+    --default-color: #ffffff;
+    --heading-color: #ffffff;
+    --surface-color: #404356;
+    --contrast-color: #ffffff;
 }
 
-/* Smooth scroll */
-:root {
-  scroll-behavior: smooth;
+/* Global Styles */
+body {
+    font-family: var(--default-font);
+    font-weight: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: bold;
+}
+
+.section-title h2 {
+    font-family: var(--heading-font);
+    font-weight: bold;
+}
+
+.navmenu {
+    font-family: var(--nav-font);
+    font-weight: 500;
+}
+
+.hero h1 {
+    font-family: var(--heading-font);
+    font-weight: bold;
+}
+
+.hero p {
+    font-family: var(--default-font);
+    font-weight: normal;
+}
+
+.features .feature-box h3 {
+    font-family: var(--heading-font);
+    font-weight: 500;
+}
+
+.features .feature-box p {
+    font-family: var(--default-font);
+    font-weight: normal;
+}
+
+.services .service-item h3 {
+    font-family: var(--heading-font);
+    font-weight: bold;
+}
+
+.services .service-item p {
+    font-family: var(--default-font);
+    font-weight: normal;
+}
+
+.cta h3 {
+    font-family: var(--heading-font);
+    font-weight: bold;
+}
+
+.contact .info-item h3 {
+    font-family: var(--heading-font);
+    font-weight: 500;
+}
+
+.contact .info-item p {
+    font-family: var(--default-font);
+    font-weight: normal;
 }
 
 /*--------------------------------------------------------------
@@ -657,7 +771,8 @@ section,
   height: 1px;
   display: inline-block;
   background: var(--accent-color);
-  margin: 4px 10px;
+  left: 0;
+  bottom: 0;
 }
 
 .section-title p {
@@ -726,6 +841,7 @@ section,
 }
 
 .hero .btn-get-started {
+  font-family: var(--heading-font);
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 1px;
@@ -1014,7 +1130,7 @@ section,
 --------------------------------------------------------------*/
 .services .service-item {
   background-color: var(--surface-color);
-  box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 30px 0 rgba(0, 0, 0, 0.1);
   padding: 60px 30px 60px 70px;
   transition: all ease-in-out 0.3s;
   border-radius: 18px;
@@ -1724,10 +1840,9 @@ section,
 
 .portfolio-details .portfolio-info h3:after {
   content: "";
-  position: absolute;
-  display: block;
   width: 50px;
   height: 3px;
+  display: inline-block;
   background: var(--accent-color);
   left: 0;
   bottom: 0;
