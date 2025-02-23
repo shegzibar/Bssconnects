@@ -567,6 +567,28 @@ h6 {
   color: #ffffff;
 }
 
+@media (max-width: 991px) {
+  .mobile-nav-toggle {
+    right: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    right: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .mobile-nav-toggle {
+    right: 5px;
+  }
+  
+  .header .logo {
+    margin-left: 10px;
+  }
+}
+
 /*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/
