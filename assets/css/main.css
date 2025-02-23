@@ -3169,3 +3169,70 @@ section,
   opacity: 1;
   transition-delay: 0.4s;
 }
+
+/*--------------------------------------------------------------
+# Clients Section
+--------------------------------------------------------------*/
+.clients {
+  padding: 15px 0;
+  background: #f6f6f6;
+}
+
+.clients .section-title {
+  margin-bottom: 10px;
+}
+
+.clients .section-title h2 {
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.clients .section-title p {
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+.clients .clients-slider {
+  padding: 5px 0;
+}
+
+.clients .swiper-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.clients .swiper-slide {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 0 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.clients .swiper-slide img {
+  height: 65px;
+  width: auto;
+  filter: grayscale(100);
+  opacity: 0.8;
+  transition: all 0.4s ease;
+}
+
+.clients .swiper-slide:hover img {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .clients {
+    padding: 10px 0;
+  }
+  
+  .clients .swiper-slide {
+    padding: 0 15px;
+  }
+  
+  .clients .swiper-slide img {
+    height: 50px;
+  }
+}

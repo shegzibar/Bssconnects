@@ -143,6 +143,42 @@
   });
 
   /**
+   * Clients Slider
+   */
+  new Swiper('.clients-slider', {
+    speed: 1000,
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+    centeredSlides: true,
+    effect: "slide",
+    grabCursor: true,
+    breakpoints: {
+      320: {
+        slidesPerView: 2,
+        spaceBetween: 15
+      },
+      480: {
+        slidesPerView: 3,
+        spaceBetween: 20
+      },
+      640: {
+        slidesPerView: 4,
+        spaceBetween: 20
+      },
+      992: {
+        slidesPerView: 5,
+        spaceBetween: 20
+      }
+    }
+  });
+
+  /**
    * Init swiper sliders
    */
   function initSwiper() {
