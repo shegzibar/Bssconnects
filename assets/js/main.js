@@ -240,67 +240,47 @@
   /**
    * Handle contact form submission
    */
-  const contactForm = document.querySelector('.php-email-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+  document.querySelector('.php-email-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let form = this;
+    let submitButton = form.querySelector('button[type="submit"]');
+    let loadingMessage = form.querySelector('.loading');
+    let errorMessage = form.querySelector('.error-message');
+    let sentMessage = form.querySelector('.sent-message');
+    
+    // Reset messages
+    loadingMessage.style.display = 'block';
+    errorMessage.style.display = 'none';
+    sentMessage.style.display = 'none';
+    submitButton.disabled = true;
 
-      let thisForm = this;
-      let action = thisForm.getAttribute('action');
-      let submitButton = thisForm.querySelector('button[type="submit"]');
-      let loadingMessage = thisForm.querySelector('.loading');
-      let errorMessage = thisForm.querySelector('.error-message');
-      let sentMessage = thisForm.querySelector('.sent-message');
+    // Collect form data
+    let formData = new FormData(form);
 
-      // Show loading message
-      if (loadingMessage) {
-        loadingMessage.classList.add('d-block');
+    // Send the form data
+    fetch(form.action, {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      loadingMessage.style.display = 'none';
+      if (data.success) {
+        sentMessage.style.display = 'block';
+        form.reset();
+      } else {
+        throw new Error(data.message || 'Form submission failed and no error message returned from: ' + form.action);
       }
-      if (errorMessage) {
-        errorMessage.classList.remove('d-block');
-      }
-      if (sentMessage) {
-        sentMessage.classList.remove('d-block');
-      }
-      if (submitButton) {
-        submitButton.disabled = true;
-      }
-
-      let formData = new FormData(thisForm);
-
-      fetch(action, {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (loadingMessage) {
-          loadingMessage.classList.remove('d-block');
-        }
-        if (data.status === 'success') {
-          if (sentMessage) {
-            sentMessage.classList.add('d-block');
-          }
-          thisForm.reset();
-        } else {
-          throw new Error(data.message || 'Form submission failed');
-        }
-      })
-      .catch(error => {
-        if (loadingMessage) {
-          loadingMessage.classList.remove('d-block');
-        }
-        if (errorMessage) {
-          errorMessage.textContent = error.message;
-          errorMessage.classList.add('d-block');
-        }
-      })
-      .finally(() => {
-        if (submitButton) {
-          submitButton.disabled = false;
-        }
-      });
+    })
+    .catch(error => {
+      loadingMessage.style.display = 'none';
+      errorMessage.innerHTML = error.message;
+      errorMessage.style.display = 'block';
+    })
+    .finally(() => {
+      submitButton.disabled = false;
     });
-  }
+  });
 
 })();

@@ -6,36 +6,80 @@
   * For more info and help: https://bootstrapmade.com/php-email-form/
   */
 
-  // Replace contact@example.com with your real receiving email address
+  header('Content-Type: application/json');
+
+  // SMTP Configuration
+  $smtp_host = 'smtp.gmail.com'; // Replace with your SMTP host
+  $smtp_username = 'your-email@gmail.com'; // Replace with your email
+  $smtp_password = 'your-app-password'; // Replace with your app password
+  $smtp_port = 587;
+  $smtp_secure = 'tls';
+
+  // Recipient email
   $receiving_email_address = 'info@bssconnects.com';
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
+  // Get form data
+  $name = $_POST['name'] ?? '';
+  $email = $_POST['email'] ?? '';
+  $subject = $_POST['subject'] ?? '';
+  $message = $_POST['message'] ?? '';
+
+  // Basic validation
+  if (empty($name) || empty($email) || empty($subject) || empty($message)) {
+      echo json_encode([
+          'success' => false,
+          'message' => 'Please fill in all required fields.'
+      ]);
+      exit;
   }
 
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      echo json_encode([
+          'success' => false,
+          'message' => 'Please enter a valid email address.'
+      ]);
+      exit;
+  }
 
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  /*
-  $contact->smtp = array(
-    'host' => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port' => '587'
-  );
-  */
+  try {
+      // Create the email body
+      $email_body = "
+      <html>
+      <head>
+          <title>New Contact Form Submission</title>
+      </head>
+      <body>
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> {$name}</p>
+          <p><strong>Email:</strong> {$email}</p>
+          <p><strong>Subject:</strong> {$subject}</p>
+          <h3>Message:</h3>
+          <p>" . nl2br(htmlspecialchars($message)) . "</p>
+      </body>
+      </html>";
 
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
+      // Set up email headers
+      $headers = "MIME-Version: 1.0\r\n";
+      $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+      $headers .= "From: {$name} <{$email}>\r\n";
+      $headers .= "Reply-To: {$email}\r\n";
+      $headers .= "X-Mailer: PHP/" . phpversion();
 
-  echo $contact->send();
+      // Send email using SMTP
+      require_once 'smtp.php';
+      $smtp = new SMTP($smtp_host, $smtp_port, $smtp_secure);
+      $smtp->authenticate($smtp_username, $smtp_password);
+      $smtp->sendEmail($email, $name, $receiving_email_address, $subject, $email_body);
+
+      echo json_encode([
+          'success' => true,
+          'message' => 'Your message has been sent. Thank you!'
+      ]);
+
+  } catch (Exception $e) {
+      echo json_encode([
+          'success' => false,
+          'message' => 'Sorry, there was an error sending your message: ' . $e->getMessage()
+      ]);
+  }
 ?>

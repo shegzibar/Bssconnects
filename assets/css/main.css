@@ -427,13 +427,44 @@ h6 {
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
-    color: #28a745;
+    position: fixed;
+    right: 15px;
+    top: 20px;
+    z-index: 9998;
+    border: 0;
+    background: none;
     font-size: 28px;
     line-height: 0;
-    margin-right: 10px;
     cursor: pointer;
-    transition: color 0.3s;
+    color: var(--accent-color);
+    display: block;
+    padding: 5px;
   }
+
+  .mobile-nav-active {
+    overflow: hidden;
+  }
+
+  .mobile-nav-active .mobile-nav-toggle {
+    color: #fff;
+    background-color: var(--accent-color);
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    right: 10px;
+    top: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-nav-toggle {
+    right: 8px;
+    top: 12px;
+    font-size: 24px;
+  }
+}
 
   .navmenu {
     padding: 0;
@@ -3296,9 +3327,6 @@ section,
   }
 }
 
-/*--------------------------------------------------------------
-# Clients Section
---------------------------------------------------------------*/
 .clients {
   padding: 15px 0;
   background: #f6f6f6;
