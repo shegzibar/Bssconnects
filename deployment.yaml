@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bss-connect-deployment
+  labels:
+    app: bss-connect
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bss-connect
+  template:
+    metadata:
+      labels:
+        app: bss-connect
+    spec:
+      containers:
+      - name: nginx
+        image: harbor.mr-elamin.com/library/bss-connect:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bss-connect-ingress
+  labels:
+    app: bss-connect
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-dns01-production
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - bssconnects2.try-my-app.com
+    secretName: bssconnects2.try-my-app.com-tls
+  rules:
+  - host: bssconnects2.try-my-app.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bss-connect-service
+            port:
+              number: 80

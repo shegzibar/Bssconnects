@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bss-connect-service
+  labels:
+    app: bss-connect
+spec:
+  selector:
+    app: bss-connect
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

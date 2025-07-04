@@ -9,8 +9,10 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="icon" type="image/svg+xml" href="assets/img/bss_logo.jpeg">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="assets/manifest.json">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -40,6 +42,330 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
       gap: 20px;
+      justify-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Hero Section Background Styles */
+    .hero {
+      position: relative;
+      background: url('assets/img/working-1.jpg') no-repeat center center;
+      background-size: cover;
+      overflow: hidden;
+      min-height: 100vh;
+      transition: background-image 1s ease-in-out;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(26, 35, 126, 0.65);
+      z-index: 1;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+      padding: 120px 0;
+    }
+
+    .hero h1, .hero h2 {
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .hero .btn-get-started {
+      background: #ffffff;
+      color: #1a237e;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .hero .btn-get-started:hover {
+      background: #f5f5f5;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .hero img.img-fluid {
+      position: relative;
+      z-index: 2;
+      max-width: 100%;
+      height: auto;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+  </style>
+  
+  <style>
+    /* Gallery Styles */
+    .gallery {
+      padding: 60px 0;
+      overflow: hidden;
+    }
+
+    .gallery-filters {
+      padding: 0;
+      margin: 0 0 40px 0;
+      list-style: none;
+      text-align: center;
+    }
+
+    .gallery-filters li {
+      cursor: pointer;
+      display: inline-block;
+      padding: 8px 20px;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1;
+      color: #444444;
+      margin: 0 4px 8px 4px;
+      transition: all 0.3s ease-in-out;
+      border-radius: 50px;
+      background: #f8f9fa;
+    }
+
+    .gallery-filters li:hover,
+    .gallery-filters li.filter-active {
+      color: #fff;
+      background: var(--primary-color, #2487ce);
+    }
+
+    .gallery-container {
+      position: relative;
+    }
+
+    .gallery-item {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .gallery-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .gallery-wrap::before {
+      content: "";
+      position: absolute;
+      left: 30px;
+      right: 30px;
+      top: 30px;
+      bottom: 30px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+      z-index: 2;
+    }
+
+    .gallery-wrap img {
+      width: 100%;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-wrap:hover img {
+      transform: scale(1.1);
+      filter: brightness(0.8);
+    }
+
+    .gallery-wrap:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-info {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -50px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease-in-out;
+      z-index: 3;
+    }
+
+    .gallery-wrap:hover .gallery-info {
+      bottom: 0;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .gallery-info h4 {
+      font-size: 20px;
+      color: #2c4964;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .gallery-info p {
+      color: #444444;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .gallery-links {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .gallery-links a {
+      color: #2c4964;
+      font-size: 24px;
+      margin: 0 5px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .gallery-links a:hover {
+      color: var(--primary-color, #2487ce);
+    }
+
+    @media (max-width: 768px) {
+      .gallery-wrap::before {
+        left: 15px;
+        right: 15px;
+        top: 15px;
+        bottom: 15px;
+      }
+    }
+  </style>
+
+  <style>
+    /* LinkedIn Posts Section Styles */
+    .linkedin-posts {
+      background-color: #f8f9fa;
+      padding: 60px 0;
+    }
+
+    .linkedin-post {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .linkedin-post:hover {
+      transform: translateY(-5px);
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .company-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-right: 12px;
+      object-fit: cover;
+    }
+
+    .post-meta h4 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #0a66c2;
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+
+    .post-meta .post-date {
+      font-size: 12px;
+      color: #666;
+      display: block;
+    }
+
+    .post-content {
+      margin-bottom: 15px;
+    }
+
+    .post-content p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .post-image {
+      margin: 15px 0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .post-image img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .post-stats {
+      display: flex;
+      gap: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+
+    .post-stats span {
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .post-stats i {
+      color: #0a66c2;
+    }
+
+    .btn-primary {
+      background-color: #0a66c2;
+      border-color: #0a66c2;
+      padding: 10px 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #004182;
+      border-color: #004182;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .linkedin-post {
+        margin-bottom: 20px;
+      }
     }
   </style>
 </head>
@@ -68,7 +394,7 @@
             <g>
               <path class="st0" d="M144.35,19.41c1.91,1.36,2.86,3.22,2.86,5.57,0,1.68-.48,3.13-1.44,4.33-.96,1.2-2.28,2.01-3.97,2.41,2.07.38,3.69,1.25,4.86,2.61,1.17,1.36,1.75,3.06,1.75,5.09,0,2.61-1.03,4.66-3.08,6.16-2.05,1.49-4.86,2.24-8.4,2.24h-14.19v-30.46h13.79c3.31,0,5.92.68,7.83,2.04ZM139.82,28.81c.87-.67,1.31-1.59,1.31-2.78s-.44-2.06-1.31-2.7c-.87-.64-2.08-.94-3.61-.91h-7.54v7.4h7.54c1.54,0,2.74-.33,3.61-1ZM140.64,41.73c1.06-.72,1.6-1.74,1.6-3.05s-.53-2.23-1.6-2.94c-1.06-.71-2.54-1.05-4.43-1.02h-7.54v8.05h7.54c1.89.03,3.37-.32,4.43-1.04Z"/>
               <path class="st0" d="M168.78,22.98c-1.67-.52-3.14-.78-4.41-.78-1.42,0-2.54.26-3.37.78-.83.52-1.24,1.25-1.24,2.18,0,.84.29,1.54.86,2.11.58.57,1.3,1.03,2.17,1.39.87.36,2.06.76,3.57,1.2,2.1.61,3.82,1.22,5.17,1.83,1.34.61,2.49,1.51,3.44,2.7.95,1.19,1.42,2.76,1.42,4.7s-.51,3.47-1.53,4.85c-1.02,1.38-2.42,2.43-4.21,3.15-1.79.73-3.84,1.09-6.14,1.09-2.42,0-4.79-.44-7.1-1.33-2.31-.88-4.32-2.07-6.03-3.55l2.48-4.96c1.57,1.42,3.33,2.54,5.28,3.35,1.95.81,3.77,1.22,5.45,1.22s2.96-.31,3.9-.94c.95-.62,1.42-1.47,1.42-2.55,0-.87-.29-1.59-.86-2.15-.58-.57-1.31-1.02-2.2-1.37-.89-.35-2.1-.74-3.64-1.17-2.1-.61-3.81-1.2-5.14-1.78-1.33-.58-2.47-1.46-3.41-2.63-.95-1.17-1.42-2.72-1.42-4.63,0-1.77.48-3.31,1.44-4.63.96-1.32,2.32-2.34,4.08-3.07,1.76-.72,3.79-1.09,6.1-1.09,2.01,0,4,.29,5.96.87,1.97.58,3.72,1.36,5.25,2.35l-2.39,5.09c-1.6-.96-3.23-1.7-4.9-2.22Z"/>
-              <path class="st0" d="M196.63,22.98c-1.67-.52-3.14-.78-4.41-.78-1.42,0-2.54.26-3.37.78-.83.52-1.24,1.25-1.24,2.18,0,.84.29,1.54.86,2.11.58.57,1.3,1.03,2.17,1.39.87.36,2.06.76,3.57,1.2,2.1.61,3.82,1.22,5.17,1.83,1.34.61,2.49,1.51,3.44,2.7.95,1.19,1.42,2.76,1.42,4.7s-.51,3.47-1.53,4.85c-1.02,1.38-2.42,2.43-4.21,3.15-1.79.73-3.84,1.09-6.14,1.09-2.42,0-4.79-.44-7.09-1.33-2.31-.88-4.32-2.07-6.03-3.55l2.48-4.96c1.57,1.42,3.33,2.54,5.28,3.35,1.95.81,3.77,1.22,5.45,1.22s2.96-.31,3.9-.94c.95-.62,1.42-1.47,1.42-2.55,0-.87-.29-1.59-.86-2.15s-1.31-1.02-2.2-1.37c-.89-.35-2.1-.74-3.64-1.17-2.1-.61-3.81-1.2-5.14-1.78-1.33-.58-2.47-1.46-3.41-2.63-.95-1.17-1.42-2.72-1.42-4.63,0-1.77.48-3.31,1.44-4.63.96-1.32,2.32-2.34,4.08-3.07,1.76-.72,3.79-1.09,6.1-1.09,2.01,0,4,.29,5.96.87,1.97.58,3.72,1.36,5.25,2.35l-2.39,5.09c-1.6-.96-3.23-1.7-4.9-2.22Z"/>
+              <path class="st0" d="M196.63,22.98c-1.67-.52-3.14-.78-4.41-.78-1.42,0-2.54.26-3.37.78-.83.52-1.24,1.25-1.24,2.18,0,.84.29,1.54.86,2.11.58.57,1.3,1.03,2.17,1.39.87.36,2.06.76,3.57,1.2,2.1.61,3.82,1.22,5.17,1.83,1.34.61,2.49,1.51,3.44,2.7.95,1.19,1.42,2.76,1.42,4.7s-.51,3.47-1.53,4.85c-1.02,1.38-2.42,2.43-4.21,3.15-1.79.73-3.84,1.09-6.14,1.09-2.42,0-4.79-.44-7.09-1.33-2.31-.88-4.32-2.07-6.03-3.55l2.48-4.96c1.57,1.42,3.33,2.54,5.28,3.35,1.95.81,3.77,1.22,5.45,1.22s2.96-.31,3.9-.94c.95-.62,1.42-1.47,1.42-2.55,0-.87-.29-1.59-.86-2.15s-1.31-1.02-2.2-1.37c-.89-.35-2.1-.74-3.64-1.17-2.1-.61-3.81-1.2-5.14-1.78-1.33-.58-2.47-1.46-3.41-2.63-.95-1.17-1.42-2.72-1.42-4.63,0-1.77.48-3.31,1.44-4.63.96-1.32,2.32-2.34,4.08-3.07,1.76-.72,3.79-1.09,6.1-1.09,2.01,0,4,.29,5.96.87,1.97.58,3.72,1.36,5.26,2.35l-2.39,5.09c-1.6-.96-3.23-1.7-4.9-2.22Z"/>
             </g>
           <path class="st0" d="M178.73,58.24c2.53,1.37,4.52,3.25,5.96,5.63,1.45,2.39,2.17,5.04,2.17,7.95s-.72,5.57-2.17,7.97c-1.45,2.4-3.44,4.3-5.96,5.7-2.53,1.4-5.33,2.1-8.4,2.1s-5.88-.7-8.4-2.1c-2.53-1.4-4.52-3.3-5.96-5.7-1.45-2.4-2.17-5.06-2.17-7.97s.72-5.56,2.17-7.95c1.45-2.39,3.44-4.26,5.96-5.63,2.53-1.37,5.33-2.05,8.4-2.05s5.88.68,8.4,2.05ZM165.13,62.8c-1.63.92-2.91,2.17-3.86,3.76-.95,1.59-1.42,3.34-1.42,5.26s.48,3.68,1.44,5.28c.96,1.6,2.25,2.87,3.86,3.8,1.61.93,3.36,1.4,5.25,1.4s3.59-.47,5.19-1.4c1.6-.93,2.86-2.2,3.79-3.8.93-1.6,1.4-3.36,1.4-5.28s-.47-3.68-1.4-5.26c-.93-1.59-2.2-2.84-3.79-3.76-1.6-.92-3.33-1.38-5.19-1.38s-3.65.46-5.28,1.38Z"/>
           <path class="st0" d="M212.92,56.58h5.77v30.57h-5.63l-15.96-21.05v21.05h-5.81v-30.57h5.63l16.01,21.09v-21.09Z"/>
@@ -81,12 +407,12 @@
         <g xmlns="http://www.w3.org/2000/svg">
     <g>
       <path class="st0" d="M144.35,19.41c1.91,1.36,2.86,3.22,2.86,5.57,0,1.68-.48,3.13-1.44,4.33-.96,1.2-2.28,2.01-3.97,2.41,2.07.38,3.69,1.25,4.86,2.61,1.17,1.36,1.75,3.06,1.75,5.09,0,2.61-1.03,4.66-3.08,6.16-2.05,1.49-4.86,2.24-8.4,2.24h-14.19v-30.46h13.79c3.31,0,5.92.68,7.83,2.04ZM139.82,28.81c.87-.67,1.31-1.59,1.31-2.78s-.44-2.06-1.31-2.7c-.87-.64-2.08-.94-3.61-.91h-7.54v7.4h7.54c1.54,0,2.74-.33,3.61-1ZM140.64,41.73c1.06-.72,1.6-1.74,1.6-3.05s-.53-2.23-1.6-2.94c-1.06-.71-2.54-1.05-4.43-1.02h-7.54v8.05h7.54c1.89.03,3.37-.32,4.43-1.04Z"/>
-      <path class="st0" d="M168.78,22.98c-1.67-.52-3.14-.78-4.41-.78-1.42,0-2.54.26-3.37.78-.83.52-1.24,1.25-1.24,2.18,0,.84.29,1.54.86,2.11.58.57,1.3,1.03,2.17,1.39.87.36,2.06.76,3.57,1.2,2.1.61,3.82,1.22,5.17,1.83,1.34.61,2.49,1.51,3.44,2.7.95,1.19,1.42,2.76,1.42,4.7s-.51,3.47-1.53,4.85c-1.02,1.38-2.42,2.43-4.21,3.15-1.79.73-3.84,1.09-6.14,1.09-2.42,0-4.79-.44-7.1-1.33-2.31-.88-4.32-2.07-6.03-3.55l2.48-4.96c1.57,1.42,3.33,2.54,5.28,3.35,1.95.81,3.77,1.22,5.45,1.22s2.96-.31,3.9-.94c.95-.62,1.42-1.47,1.42-2.55,0-.87-.29-1.59-.86-2.15s-1.31-1.02-2.2-1.37c-.89-.35-2.1-.74-3.64-1.17-2.1-.61-3.81-1.2-5.14-1.78-1.33-.58-2.47-1.46-3.41-2.63-.95-1.17-1.42-2.72-1.42-4.63,0-1.77.48-3.31,1.44-4.63.96-1.32,2.32-2.34,4.08-3.07,1.76-.72,3.79-1.09,6.1-1.09,2.01,0,4,.29,5.96.87,1.97.58,3.72,1.36,5.25,2.35l-2.39,5.09c-1.6-.96-3.23-1.7-4.9-2.22Z"/>
+      <path class="st0" d="M168.78,22.98c-1.67-.52-3.14-.78-4.41-.78-1.42,0-2.54.26-3.37.78-.83.52-1.24,1.25-1.24,2.18,0,.84.29,1.54.86,2.11.58.57,1.3,1.03,2.17,1.39.87.36,2.06.76,3.57,1.2,2.1.61,3.82,1.22,5.17,1.83,1.34.61,2.49,1.51,3.44,2.7.95,1.19,1.42,2.76,1.42,4.7s-.51,3.47-1.53,4.85c-1.02,1.38-2.42,2.43-4.21,3.15-1.79.73-3.84,1.09-6.14,1.09-2.42,0-4.79-.44-7.1-1.33-2.31-.88-4.32-2.07-6.03-3.55l2.48-4.96c1.57,1.42,3.33,2.54,5.28,3.35,1.95.81,3.77,1.22,5.45,1.22s2.96-.31,3.9-.94c.95-.62,1.42-1.47,1.42-2.55,0-.87-.29-1.59-.86-2.15-.58-.57-1.31-1.02-2.2-1.37-.89-.35-2.1-.74-3.64-1.17-2.1-.61-3.81-1.2-5.14-1.78-1.33-.58-2.47-1.46-3.41-2.63-.95-1.17-1.42-2.72-1.42-4.63,0-1.77.48-3.31,1.44-4.63.96-1.32,2.32-2.34,4.08-3.07,1.76-.72,3.79-1.09,6.1-1.09,2.01,0,4,.29,5.96.87,1.97.58,3.72,1.36,5.25,2.35l-2.39,5.09c-1.6-.96-3.23-1.7-4.9-2.22Z"/>
     </g>
     <g xmlns="http://www.w3.org/2000/svg">
       <g>
         <path class="st0" d="M144.35,19.41c1.91,1.36,2.86,3.22,2.86,5.57,0,1.68-.48,3.13-1.44,4.33-.96,1.2-2.28,2.01-3.97,2.41,2.07.38,3.69,1.25,4.86,2.61,1.17,1.36,1.75,3.06,1.75,5.09,0,2.61-1.03,4.66-3.08,6.16-2.05,1.49-4.86,2.24-8.4,2.24h-14.19v-30.46h13.79c3.31,0,5.92.68,7.83,2.04ZM139.82,28.81c.87-.67,1.31-1.59,1.31-2.78s-.44-2.06-1.31-2.7c-.87-.64-2.08-.94-3.61-.91h-7.54v7.4h7.54c1.54,0,2.74-.33,3.61-1ZM140.64,41.73c1.06-.72,1.6-1.74,1.6-3.05s-.53-2.23-1.6-2.94c-1.06-.71-2.54-1.05-4.43-1.02h-7.54v8.05h7.54c1.89.03,3.37-.32,4.43-1.04Z"/>
-        <path class="st0" d="M168.78,22.98c-1.67-.52-3.14-.78-4.41-.78-1.42,0-2.54.26-3.37.78-.83.52-1.24,1.25-1.24,2.18,0,.84.29,1.54.86,2.11.58.57,1.3,1.03,2.17,1.39.87.36,2.06.76,3.57,1.2,2.1.61,3.82,1.22,5.17,1.83,1.34.61,2.49,1.51,3.44,2.7.95,1.19,1.42,2.76,1.42,4.7s-.51,3.47-1.53,4.85c-1.02,1.38-2.42,2.43-4.21,3.15-1.79.73-3.84,1.09-6.14,1.09-2.42,0-4.79-.44-7.1-1.33-2.31-.88-4.32-2.07-6.03-3.55l2.48-4.96c1.57,1.42,3.33,2.54,5.28,3.35,1.95.81,3.77,1.22,5.45,1.22s2.96-.31,3.9-.94c.95-.62,1.42-1.47,1.42-2.55,0-.87-.29-1.59-.86-2.15s-1.31-1.02-2.2-1.37c-.89-.35-2.1-.74-3.64-1.17-2.1-.61-3.81-1.2-5.14-1.78-1.33-.58-2.47-1.46-3.41-2.63-.95-1.17-1.42-2.72-1.42-4.63,0-1.77.48-3.31,1.44-4.63.96-1.32,2.32-2.34,4.08-3.07,1.76-.72,3.79-1.09,6.1-1.09,2.01,0,4,.29,5.96.87,1.97.58,3.72,1.36,5.25,2.35l-2.39,5.09c-1.6-.96-3.23-1.7-4.9-2.22Z"/>
+        <path class="st0" d="M168.78,22.98c-1.67-.52-3.14-.78-4.41-.78-1.42,0-2.54.26-3.37.78-.83.52-1.24,1.25-1.24,2.18,0,.84.29,1.54.86,2.11.58.57,1.3,1.03,2.17,1.39.87.36,2.06.76,3.57,1.2,2.1.61,3.82,1.22,5.17,1.83,1.34.61,2.49,1.51,3.44,2.7.95,1.19,1.42,2.76,1.42,4.7s-.51,3.47-1.53,4.85c-1.02,1.38-2.42,2.43-4.21,3.15-1.79.73-3.84,1.09-6.14,1.09-2.42,0-4.79-.44-7.1-1.33-2.31-.88-4.32-2.07-6.03-3.55l2.48-4.96c1.57,1.42,3.33,2.54,5.28,3.35,1.95.81,3.77,1.22,5.45,1.22s2.96-.31,3.9-.94c.95-.62,1.42-1.47,1.42-2.55,0-.87-.29-1.59-.86-2.15-.58-.57-1.31-1.02-2.2-1.37-.89-.35-2.1-.74-3.64-1.17-2.1-.61-3.81-1.2-5.14-1.78-1.33-.58-2.47-1.46-3.41-2.63-.95-1.17-1.42-2.72-1.42-4.63,0-1.77.48-3.31,1.44-4.63.96-1.32,2.32-2.34,4.08-3.07,1.76-.72,3.79-1.09,6.1-1.09,2.01,0,4,.29,5.96.87,1.97.58,3.72,1.36,5.25,2.35l-2.39,5.09c-1.6-.96-3.23-1.7-4.9-2.22Z"/>
         <path class="st0" d="M196.63,22.98c-1.67-.52-3.14-.78-4.41-.78-1.42,0-2.54.26-3.37.78-.83.52-1.24,1.25-1.24,2.18,0,.84.29,1.54.86,2.11.58.57,1.3,1.03,2.17,1.39.87.36,2.06.76,3.57,1.2,2.1.61,3.82,1.22,5.17,1.83,1.34.61,2.49,1.51,3.44,2.7.95,1.19,1.42,2.76,1.42,4.7s-.51,3.47-1.53,4.85c-1.02,1.38-2.42,2.43-4.21,3.15-1.79.73-3.84,1.09-6.14,1.09-2.42,0-4.79-.44-7.09-1.33-2.31-.88-4.32-2.07-6.03-3.55l2.48-4.96c1.57,1.42,3.33,2.54,5.28,3.35,1.95.81,3.77,1.22,5.45,1.22s2.96-.31,3.9-.94c.95-.62,1.42-1.47,1.42-2.55,0-.87-.29-1.59-.86-2.15s-1.31-1.02-2.2-1.37c-.89-.35-2.1-.74-3.64-1.17-2.1-.61-3.81-1.2-5.14-1.78-1.33-.58-2.47-1.46-3.41-2.63-.95-1.17-1.42-2.72-1.42-4.63,0-1.77.48-3.31,1.44-4.63.96-1.32,2.32-2.34,4.08-3.07,1.76-.72,3.79-1.09,6.1-1.09,2.01,0,4,.29,5.96.87,1.97.58,3.72,1.36,5.26,2.35l-2.39,5.09c-1.6-.96-3.23-1.7-4.9-2.22Z"/>
       </g>
       <path class="st0" d="M143.77,62.48c-1.49-.7-3.01-1.05-4.55-1.05-1.92,0-3.68.45-5.28,1.35-1.6.9-2.85,2.15-3.77,3.73-.92,1.59-1.37,3.33-1.37,5.22s.46,3.63,1.37,5.22c.92,1.59,2.17,2.84,3.77,3.76,1.6.92,3.35,1.38,5.28,1.38,1.48,0,2.96-.32,4.46-.96,1.49-.64,2.82-1.53,3.97-2.66l3.5,3.84c-1.63,1.63-3.52,2.92-5.68,3.86-2.16.95-4.35,1.42-6.56,1.42-2.99,0-5.72-.7-8.2-2.1-2.48-1.4-4.43-3.3-5.85-5.7-1.42-2.4-2.13-5.06-2.13-7.97s.72-5.56,2.17-7.95c1.45-2.39,3.42-4.26,5.92-5.63,2.5-1.37,5.27-2.05,8.31-2.05,2.22,0,4.39.44,6.52,1.31,2.13.87,3.95,2.08,5.45,3.62l-3.46,4.28c-1.09-1.25-2.39-2.23-3.88-2.93Z"/>
@@ -125,21 +451,22 @@
             <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-inner">
                 <!-- Slide 1 -->
-                <div class="carousel-item active">
+                <div class="carousel-item active" data-bg-image="assets/img/working-1.jpg">
                   <h1>Transform Your Business with <span>BSS Connects</span></h1>
                   <h2>Innovative Business Support Systems for the Digital Age</h2>
                 </div>
 
                 <!-- Slide 2 -->
-                <div class="carousel-item">
+                <div class="carousel-item" data-bg-image="assets/img/working-2.jpg">
                   <h1>Empower Your <span>Operations</span></h1>
                   <h2>Streamline Processes and Enhance Customer Experience</h2>
+                  
                 </div>
 
                 <!-- Slide 3 -->
-                <div class="carousel-item">
-                  <h1>Join the Digital <span>Revolution</span></h1>
-                  <h2>Next-Generation BSS Solutions for Modern Enterprises</h2>
+                <div class="carousel-item" data-bg-image="assets/img/eve.jpg">
+                  <h1>NOVACOM<span> EVENT</span></h1>
+                  <h2>We are thrilled to join novacom event in 29th of April</h2>
                 </div>
               </div>
             </div>
@@ -226,7 +553,7 @@
             <img src="assets/img/client-1.png" alt="Client 1" class="img-fluid">
           </div>
           <div class="partner-item">
-            <img src="assets/img/MTN.png" alt="MTN" class="img-fluid">
+            <img src="assets/img/MTN.jpg" alt="MTN" class="img-fluid">
           </div>
           <div class="partner-item">
             <img src="assets/img/orange.png" alt="Orange" class="img-fluid">
@@ -436,6 +763,117 @@
       </div>
     </section><!-- End Services Section -->
 
+    <!-- LinkedIn Posts Section -->
+    <section id="linkedin-posts" class="linkedin-posts section">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Latest Updates</h2>
+          <p>Follow us on LinkedIn for more insights</p>
+        </div>
+
+        <div class="row gy-4">
+          <!-- Post 1 -->
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="linkedin-post">
+              <div class="post-header">
+                <img src="assets/img/bss_logo.jpeg" alt="BSS Connects" class="company-logo">
+                <div class="post-meta">
+                  <h4>NOVACOM Event Announcement</h4>
+                  <span class="post-date">1 month ago</span>
+                </div>
+              </div>
+              <div class="post-content">
+                <p>Excited to announce our participation in the upcoming NOVACOM event! Join us on April 29th to discover how our innovative BSS solutions are transforming the telecom industry.</p>
+                <div class="post-image">
+                  <img src="assets/img/eve.jpg" alt="NOVACOM Event" class="img-fluid">
+                </div>
+              </div>
+              <div class="post-stats">
+                <span><i class="bi bi-heart"></i> 245</span>
+                <span><i class="bi bi-chat"></i> 48</span>
+                <span><i class="bi bi-share"></i> 32</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Post 2 -->
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="linkedin-post">
+              <div class="post-header">
+                <img src="assets/img/bss_logo.jpeg" alt="BSS Connects" class="company-logo">
+                <div class="post-meta">
+                  <h4>𝗪𝗵𝗮𝘁 𝗸𝗲𝗲𝗽𝘀 𝘆𝗼𝘂𝗿 𝘁𝗲𝗹𝗲𝗰𝗼𝗺 𝗻𝗲𝘁𝘄𝗼𝗿𝗸 𝗶𝗻𝘁𝗲𝗹𝗹𝗶𝗴𝗲𝗻𝘁, 𝗮𝗴𝗶𝗹𝗲, 𝗮𝗻𝗱 𝗮𝗹𝘄𝗮𝘆𝘀 𝗼𝗻</h4>
+                  <span class="post-date">1 week ago</span>
+                </div>
+              </div>
+              <div class="post-content">
+                <p>
+It’s not magic, it’s 𝗢𝗦𝗦 (𝗢𝗽𝗲𝗿𝗮𝘁𝗶𝗼𝗻𝗮𝗹 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 𝗦𝘆𝘀𝘁𝗲𝗺𝘀).
+Often overlooked. Always essential.
+
+At 𝗕𝗦𝗦 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝘀 , 𝗢𝗦𝗦 isn’t just something we talk about, 
+🏗️ We build it.
+🧩 We integrate it.
+🚚 We deliver it.
+
+From real-time network visibility to service orchestration and fault management, 𝗢𝗦𝗦 is the 𝗯𝗮𝗰𝗸𝗯𝗼𝗻𝗲 of modern telecom and a critical part of the solutions we offer.</p>
+                <div class="post-image">
+                  <img src="assets/img/post2.jpeg" alt="Mediation System" class="img-fluid">
+                </div>
+              </div>
+              <div class="post-stats">
+                <span><i class="bi bi-heart"></i> 189</span>
+                <span><i class="bi bi-chat"></i> 35</span>
+                <span><i class="bi bi-share"></i> 27</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Post 3 -->
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="linkedin-post">
+              <div class="post-header">
+                <img src="assets/img/bss_logo.jpeg" alt="BSS Connects" class="company-logo">
+                <div class="post-meta">
+                  <h4>MTN Partnership Announcement</h4>
+                  <span class="post-date">3 days ago</span>
+                </div>
+              </div>
+              <div class="post-content">
+                <p>𝗪𝗵𝗮𝘁 𝗺𝗮𝗸𝗲𝘀 𝗮 𝘁𝗲𝗹𝗲𝗰𝗼𝗺 𝗻𝗲𝘁𝘄𝗼𝗿𝗸 𝘁𝗿𝘂𝗹𝘆 𝗶𝗻𝘁𝗲𝗹𝗹𝗶𝗴𝗲𝗻𝘁? 📡 
+
+                  It’s not just about speed, it’s about structure.
+                  Behind every resilient operation lies a system powered by 𝗢𝗦𝗦 (Operational Support Systems) and its five core pillars:
+                  
+                  ⚙️ 𝗙𝗮𝘂𝗹𝘁 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 🔧 𝗖𝗼𝗻𝗳𝗶𝗴𝘂𝗿𝗮𝘁𝗶𝗼𝗻💲 𝗔𝗰𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴
+                  📈 𝗣𝗲𝗿𝗳𝗼𝗿𝗺𝗮𝗻𝗰𝗲 🔒 𝗦𝗲𝗰𝘂𝗿𝗶𝘁𝘆
+                  
+                  These aren’t just technical features, they’re the foundation of modern network control.
+                  
+                   But what happens without them ❓
+                  Take a moment to look at the visual below. It lays out the transformation clearly.
+                  </p>
+                <div class="post-image">
+                  <img src="assets/img/post 1.jpeg" alt="MTN Partnership" class="img-fluid">
+                </div>
+              </div>
+              <div class="post-stats">
+                <span><i class="bi bi-heart"></i> 312</span>
+                <span><i class="bi bi-chat"></i> 56</span>
+                <span><i class="bi bi-share"></i> 43</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="https://www.linkedin.com/company/bss-connects/" class="btn btn-primary" target="_blank">
+            Follow us on LinkedIn <i class="bi bi-linkedin ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </section><!-- End LinkedIn Posts Section -->
+
     <!-- Contact Section -->
     <section id="contact" class="contact section">
 
@@ -520,9 +958,9 @@
       <h3 class="sitename">Bssconnects</h3>
       <div class="social-links d-flex justify-content-center">
        
-        <a href=""><i class="bi bi-facebook"></i></a>
+        
  
-        <a href=""><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.linkedin.com/company/bss-connects/"><i class="bi bi-linkedin"></i></a>
       </div>
       <div class="container">
         <div class="copyright">
@@ -556,6 +994,49 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Add this script before the closing body tag -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const heroSection = document.querySelector('.hero');
+      const carousel = document.getElementById('heroCarousel');
+      
+      // Set initial background
+      const firstSlide = carousel.querySelector('.carousel-item.active');
+      if (firstSlide) {
+        heroSection.style.backgroundImage = `url('${firstSlide.dataset.bgImage}')`;
+      }
+
+      // Listen for slide changes
+      carousel.addEventListener('slide.bs.carousel', function(e) {
+        const nextSlide = e.relatedTarget;
+        
+        // Create a temporary div for preloading
+        const tempDiv = document.createElement('div');
+        tempDiv.style.backgroundImage = `url('${nextSlide.dataset.bgImage}')`;
+        tempDiv.style.position = 'absolute';
+        tempDiv.style.width = '100%';
+        tempDiv.style.height = '100%';
+        tempDiv.style.opacity = '0';
+        tempDiv.style.transition = 'opacity 1s ease-in-out';
+        
+        // Add the temporary div to the hero section
+        heroSection.appendChild(tempDiv);
+        
+        // Force a reflow
+        tempDiv.offsetHeight;
+        
+        // Fade in the new background
+        tempDiv.style.opacity = '1';
+        
+        // After the transition, update the main background
+        setTimeout(() => {
+          heroSection.style.backgroundImage = `url('${nextSlide.dataset.bgImage}')`;
+          tempDiv.remove();
+        }, 1000);
+      });
+    });
+  </script>
 
 </body>
 
